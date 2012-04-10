@@ -16,7 +16,7 @@ module ActiveRecord::Import
     import_adapter = "ActiveRecord::Import::#{connection.class.name.demodulize}::InstanceMethods"
     unless connection.class.ancestors.map(&:name).include?(import_adapter)
       config = connection.instance_variable_get :@config
-      require_adapter config[:adapter]
+      require_adapter config[:adapter] if config
     end
   end
 end
